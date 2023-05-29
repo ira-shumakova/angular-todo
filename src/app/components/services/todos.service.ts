@@ -1,6 +1,6 @@
 import { BehaviorSubject, Observable } from 'rxjs';
 import { Injectable } from '@angular/core';
-import { ITodoWithId } from '../models/todos';
+import { ITodoWithId, ITodo } from '../models/todos';
 
 @Injectable({
   providedIn: 'root'
@@ -17,6 +17,10 @@ export class TodosService {
     return this.todosListArray.getValue();
   }
 
+  getTodo(id: number) {
+    return this.getTodos().find((todo) => todo.id === id);
+  }
+
   setTodos(newValue: ITodoWithId[]) {
     this.todosListArray.next(newValue)
   }
@@ -31,6 +35,12 @@ export class TodosService {
     });
 
     this.todosListArray.next(updatedTodos); 
+  }
+
+  addTodo(todo: ITodoWithId) {
+    const currentTodos = this.todosListArray.getValue();
+    const updatedTodos = [...currentTodos, todo];
+    this.todosListArray.next(updatedTodos);
   }
 
   deleteTodo(id: number) {

@@ -15,7 +15,11 @@ export class TodolistComponent implements OnInit {
   todos$: Observable<ITodoWithId[]>;
   todos: ITodoWithId[];
 
-  constructor(private todosService: TodosService, private todosAPIService: TodosAPIService, private router: Router) {
+  constructor(
+    private todosService: TodosService, 
+    private todosAPIService: TodosAPIService, 
+    private router: Router
+  ) {
     this.todos$ = this.todosService.getTodos$();
     this.todos = this.todosService.getTodos();
   }
@@ -35,7 +39,7 @@ export class TodolistComponent implements OnInit {
   }
 
   onEdit(id: number) {
-    console.log(id)
+    this.router.navigate([`edit/${id}`])
   }
 
   onDelete(id: number) {

@@ -19,8 +19,8 @@ export class TodosAPIService {
     return this.http.get<ITodoWithId>(`https://646c7f787b42c06c3b2b5e50.mockapi.io/todos/${id}`)
   }
 
-  create(todo: ITodo): Observable<ITodo> {
-    return this.http.post<ITodo>('https://646c7f787b42c06c3b2b5e50.mockapi.io/todos', todo)
+  create(todo: ITodo): Observable<ITodoWithId> {
+    return this.http.post<ITodoWithId>('https://646c7f787b42c06c3b2b5e50.mockapi.io/todos', todo)
   }
 
   update(todo: ITodoWithId): Observable<ITodoWithId> {
