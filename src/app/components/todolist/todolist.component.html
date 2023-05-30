@@ -7,25 +7,27 @@
           <h4>Complete</h4>
         </div>
         <div class="col-2">
-          <h4>Delete</h4>
+          <h4 class="ps-4">Edit</h4>
         </div>
         <div class="col-2">
-          <h4>Edit</h4>
+          <h4 class="ps-2">Delete</h4>
         </div>
         <hr class="mt-3">
       </div>
       <div *ngFor="let todo of todos$ | async" class="row mb-1 mt-2">
         <div class="col-6">
-          {{ todo.title }}
+          <span [ngStyle]="{'text-decoration': todo.isCompleted ? 'line-through' : 'none'}">
+            {{ todo.title }}
+          </span>
         </div>
         <div class="col-2">
-          <input (change)="onCheck(todo)" type="checkbox" class="ms-4" [checked]="todo.isCompleted">
+          <input (change)="onCheck(todo)" type="checkbox" class="ms-5" [checked]="todo.isCompleted">
         </div>
-        <div class="col-2">
-          <app-button class="btn-success" (emitTodoEvent)="onEdit(todo.id)" text="Edit"></app-button>
+        <div class="col-2 p-0">
+          <app-button class="btn-success px-4" (emitTodoEvent)="onEdit(todo.id)" text="Edit"></app-button>
         </div>
-        <div class="col-2">
-          <app-button class="btn-danger" (emitTodoEvent)="onDelete(todo.id)" text="Delete"></app-button>
+        <div class="col-2 p-0">
+          <app-button class="btn-danger px-3  " (emitTodoEvent)="onDelete(todo.id)" text="Delete"></app-button>
         </div>
         <hr class="mt-3">
       </div>

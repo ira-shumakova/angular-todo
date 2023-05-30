@@ -3,7 +3,7 @@ import { TodosAPIService } from '../services/todosAPI.service';
 import { TodosService } from '../services/todos.service';
 import { ITodo, ITodoWithId } from '../models/todos';
 import { IValue } from '../models/routeValue';
-import { Router, NavigationEnd, Route, ActivatedRoute } from '@angular/router';
+import { Router, NavigationEnd, ActivatedRoute } from '@angular/router';
 import { filter } from 'rxjs';
 import { FormControl, FormGroup } from '@angular/forms';
 
@@ -35,11 +35,13 @@ export class NewTodoComponent implements OnInit {
     this.route.params.subscribe(params => {
       const id = params['id'];
       if (id) {
-        this.todo = this.todosService.getTodo(id)
-        this.form.patchValue({
-          title: this.todo?.title,
-          isCompleted: this.todo?.isCompleted
-        })
+        this.todosAPIService.getOne(id).subscribe((todo: ITodoWithId) => {
+          this.todo = todo;
+          this.form.patchValue({
+            title: todo.title,
+            isCompleted: todo.isCompleted
+          });
+        });
       }
       return
     });

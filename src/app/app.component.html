@@ -1,20 +1,20 @@
 <div class="container mt-5">
   <div class="row justify-content-center mb-3">
     <div class="col-3">
-      <h1 class="text-center">
+      <h1 class="text-center text-primary">
         {{ showAddTodoButton ? 'Todo List' : (isCreateForm ? 'Create Todo' : 'Edit Todo') }}
       </h1>
     </div>
     <div class="col-3 align-self-center" *ngIf="showAddTodoButton">
       <app-button 
-        class="btn-primary" 
+        class="btn-primary px-4" 
         text="Add new todo"
         (emitTodoEvent)="redirect()" 
       ></app-button> 
     </div>
     <div class="col-3 align-self-center" *ngIf="!showAddTodoButton">
       <app-button 
-        class="btn-primary" 
+        class="btn-primary px-4" 
         text="Back to list"
         (emitTodoEvent)="redirectToMain()" 
       ></app-button> 
